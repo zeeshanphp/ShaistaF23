@@ -1,0 +1,51 @@
+        :root{
+        --maincolor :#F57F17;
+        --seccolor :#F9A825;
+}
+        body{
+            background:#ecf0f5;
+            font-family: 'Lato', sans-serif;  
+        }
+        .top-bg{
+          background: var(--seccolor);
+        }
+	.nav-back{
+          background: var(--maincolor);
+			color: #FFF;
+		}
+        ul li a{
+            color:#b8c7ce;
+        }
+        ul li:hover{
+          background: var(--maincolor);
+            color:#b8c7ce;
+        }
+        .form-control{
+          border-radius: 0px;
+        }
+        .btn{
+          border-radius: 0px;
+        }
+        .cust-btn:hover{
+          background: var(--maincolor);
+        }
+        .cust-btn{
+          background: var(--seccolor);
+          color: #FFF;
+        }
+        .text-color{
+          color: var(--seccolor);
+        }
+
+
+        .cust-btn-in:hover{
+          background: #560027;
+          color: #fff;
+        }
+        .cust-btn-in{
+          background: var(--maincolor);
+          color: #FFF;
+        }
+        .text-color-in{
+          color: var(--maincolor);
+        }
