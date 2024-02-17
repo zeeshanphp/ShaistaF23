@@ -10,11 +10,11 @@ if (isset($_POST['add_user'])) {
     $pass = $_POST['upass'];
     $username = $_POST['uname'];
     $city = $_POST['ucity'];
+    $type = $_POST['type'];
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $query = "insert into  users(username,fullname,password,email,phone,city) values('$username','$fullname','$pass','$email','$phone','$city')";
+        $query = "insert into  users(username,fullname,password,email,phone,city,type) values('$username','$fullname','$pass','$email','$phone','$city' , '$type')";
         if (mysqli_query($conn, $query)) {
             $message = " <b> User Registered Successfully &nbsp  &nbsp <a href='login.php'>Go To Login Page</a> </b>";
-            mail($email, "Registration", "User Registration Successfully", "sender_email");
         }
     } else {
         $error =  "Invalid email. Please enter a valid email address.";
@@ -71,6 +71,17 @@ include 'header.php'
                         <tr>
                             <td><b>Enter City</b></td>
                             <td><input type="text" class="form-control" name="ucity" placeholder="Enter User City" required /></td>
+                        </tr>
+                        <tr>
+                            <td><b>Select User Type</b></td>
+                            <td>
+                                <select name="type" class="form-select">
+                                    <option>--Select User--</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Seller">Seller</option>
+                                    <option value="Customer">Customer</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td></td>

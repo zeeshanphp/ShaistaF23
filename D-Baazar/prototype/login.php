@@ -10,7 +10,20 @@ if (isset($_POST['login_user'])) {
     $count = mysqli_num_rows($result);
     if ($count > 0) {
         $row = mysqli_fetch_array($result);
-        header('location: index.php');
+        if ($row['type'] == "Admin") {
+            session_start();
+            $_SESSION['admin'] = true;
+            header('location: Admin/addcat.php');
+        } else  if ($row['type'] == "Seller") {
+            session_start();
+            $_SESSION['seller'] = $row['userId'];
+
+            header('location: Seller/add_product.php');
+        } else if ($row['type'] == "Customer") {
+            session_start();
+            $_SESSION['custId'] = $row['userId'];
+            header('location: index.php');
+        }
     } else {
         $message = "Invalid Username or password please enter correct credentials";
     }

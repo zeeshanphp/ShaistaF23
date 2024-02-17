@@ -29,7 +29,7 @@ include 'header.php'
             while ($row = mysqli_fetch_array($result)) { ?>
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="Admin/images/<?php echo $row['photo']; ?>" height="200" class="card-img-top rounded" alt="...">
+                        <img src="Seller/images/<?php echo $row['photo']; ?>" height="200" class="card-img-top rounded" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['pname']; ?></h5>
                             <p class="card-text">
@@ -38,7 +38,10 @@ include 'header.php'
                             <p>
                                 <b>Category : </b><?php echo $row['pcat'] ?>
                             </p>
-                            <a href="#" class="btn btn-primary rounded w-100 bg-gradient">Add To Cart</a>
+                            <a href="addtocart.php?c_id=<?php echo $row['pId'] ?>" class="btn btn-primary rounded w-100 bg-gradient">Add To Cart</a>
+                        </div>
+                        <div class="card-footer">
+                            <a href="feedback.php?feedback=<?php echo $row['pId'] ?>" class="btn btn-success rounded w-100">Add Feedback</a>
                         </div>
                     </div>
 

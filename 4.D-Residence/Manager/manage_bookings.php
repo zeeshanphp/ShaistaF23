@@ -1,19 +1,10 @@
 <?php
 include 'db.php';
-$message = "";
-
-if (isset($_GET['assign']) && isset($_GET['room'])) {
-    $id = $_GET['assign'];
-    $room = $_GET['room'];
-    mysqli_query($conn, "UPDATE bookings SET order_status='Room Assigned' WHERE bookingId='$id'");
-    mysqli_query($conn, "UPDATE rooms SET status='Room is booked' WHERE roomId='$room'");
-
-    header('location: manage_bookings.php');
-}
-
-$query = "SELECT * FROM bookings JOIN rooms ON bookings.roomId=rooms.roomId";
+$query = "SELECT * FROM bookings b JOIN customers c ON b.custId=c.custId";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
+$message = "";
+
 include 'header.php';
 
 ?>
@@ -26,51 +17,48 @@ include 'header.php';
     </div>
     <div class="col-md-10">
         <div class="card">
-            <div class="card-header text-primary">
-                <center>
-                    <h4>VIEW ALL BOOKING REQUESTS</h4>
-                </center>
+            <div class="card-header bg-info bg-gradient">
+                <b>
+                    <center>
+                        MY BOOKING HISTORY
+                    </center>
+                </b>
             </div>
             <div class="card-body">
-                <table class="table table-borderless table-hover">
-
+                <table class="table">
                     <tr class="table-active bg-gradient">
-                        <th style="vertical-align: middle;">Image</th>
-                        <th style="vertical-align: middle;">Room No</th>
-                        <th style="vertical-align: middle;">Room Rent</th>
-                        <th style="vertical-align: middle;">Room Type</th>
-                        <th style="vertical-align: middle;">Booking Status</th>
+                        <th>Customer Name</th>
+                        <th>Customer Phone</th>
+                        <th>Customer Email</th>
+                        <th>Type</th>
+                        <th>Room No</th>
+                        <th>Book Status</th>
+                        <th>Book Date</th>
+                        <th>Assign Room</th>
                     </tr>
-                    <?php if ($count > 0) {
-                        while ($row = mysqli_fetch_array($result)) {
+                    <?php
+                    while ($row = mysqli_fetch_array($result)) {
                     ?>
-
-                            <tr>
-                                <td><img src="images/<?php echo $row['image'] ?>" height="70" width="70"></td>
-                                <td style="vertical-align: middle;"><?php echo $row['roomno'] ?></td>
-                                <td style="vertical-align: middle;"><?php echo $row['rent'] ?></td>
-                                <td style="vertical-align: middle;"><?php echo $row['type'] ?></td>
-                                <td style="vertical-align: middle;"><?php if ($row['order_status'] == "Pending") { ?>
-                                        <a href="?assign=<?php echo $row['bookingId']; ?>&room=<?php echo $row['roomId'] ?>" class="btn btn-dark bg-gradient">Assign</a>
-                                    <?php } else {
-                                                                        echo "<span class='badge bg-success'>" . $row['order_status'] . "</span>";
-                                                                    } ?>
-                                </td>
-
-                            </tr>
-                        <?php
-                        }
-                    } else { ?>
                         <tr>
-                            <td colspan="5" class="text-danger"> <b> No Record Found</b></td>
+                            <td><?php echo $row['fullname'] ?></td>
+                            <td><?php echo $row['phone'] ?></td>
+                            <td><?php echo $row['email'] ?></td>
+                            <td><?php echo $row['room_type'] ?></td>
+                            <td><?php echo $row['room_no'] ?></td>
+                            <td><?php echo $row['booking_status'] ?></td>
+                            <td><?php echo $row['booking_date'] ?></td>
+                            <?php
+                            if ($row['booking_status'] == "Pending") { ?>
+                                <td><a href="assign.php?book=<?php echo $row['bookingId'] ?>&type=<?php echo $row['room_type'] ?>&custId=<?php echo $row['custId'] ?>" class="btn btn-success rounded bg-gradient">Assign Flat</a></td>
+                            <?php  } else { ?>
+                                <td><span class="badge bg-success"><?php echo $row['booking_status'] ?></span></td>
+                            <?php }
+                            ?>
                         </tr>
-                    <?php }
-
-                    ?>
+                    <?php } ?>
                 </table>
             </div>
         </div>
-
     </div>
 </div>
 <?php

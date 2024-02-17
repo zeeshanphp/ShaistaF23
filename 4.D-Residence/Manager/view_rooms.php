@@ -35,10 +35,11 @@ include 'header.php';
 
                     <tr class="table-active bg-gradient">
                         <th style="vertical-align: middle;">Image</th>
-                        <th style="vertical-align: middle;">Room No</th>
                         <th style="vertical-align: middle;">Room Rent</th>
                         <th style="vertical-align: middle;">Room Type</th>
-                        <th style="vertical-align: middle;">Booking Status</th>
+                        <th style="vertical-align: middle;">Total Rooms</th>
+                        <th style="vertical-align: middle;">Booked Rooms</th>
+                        <th style="vertical-align: middle;">Remaining Rooms</th>
                     </tr>
                     <?php if ($count > 0) {
                         while ($row = mysqli_fetch_array($result)) {
@@ -46,10 +47,11 @@ include 'header.php';
 
                             <tr>
                                 <td><img src="images/<?php echo $row['image'] ?>" height="70" width="70"></td>
-                                <td style="vertical-align: middle;"><?php echo $row['roomno'] ?></td>
                                 <td style="vertical-align: middle;"><?php echo $row['rent'] ?></td>
                                 <td style="vertical-align: middle;"><?php echo $row['type'] ?></td>
-                                <td style="vertical-align: middle;"><?php echo $row['status'] ?></td>
+                                <td style="vertical-align: middle;"><?php echo $row['available_rooms'] ?></td>
+                                <td style="vertical-align: middle;"><?php echo $row['booked_room'] ?></td>
+                                <td style="vertical-align: middle;"><?php echo $row['remaining_rooms'] ?></td>
 
                             </tr>
                         <?php

@@ -4,6 +4,11 @@ $message = "";
 $query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
 $count = mysqli_num_rows($result);
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    mysqli_query($conn, "DELETE FROM products WHERE pId='$id'");
+    header('location: view_products.php');
+}
 include 'header.php';
 
 ?>
@@ -29,6 +34,8 @@ include 'header.php';
                         <th style="vertical-align: middle;">Product Name</th>
                         <th style="vertical-align: middle;">Product Price</th>
                         <th style="vertical-align: middle;">Product Category</th>
+                        <th style="vertical-align: middle;">Edit</th>
+                        <th style="vertical-align: middle;">Delete</th>
                     </tr>
                     <?php if ($count > 0) {
                         while ($row = mysqli_fetch_array($result)) {
@@ -39,7 +46,8 @@ include 'header.php';
                                 <td style="vertical-align: middle;"><?php echo $row['pname'] ?></td>
                                 <td style="vertical-align: middle;"><?php echo $row['pprice'] ?></td>
                                 <td style="vertical-align: middle;"><?php echo $row['pcat'] ?></td>
-
+                                <td><a href="edit_product.php?edit=<?php echo $row['pId'] ?>" class="btn btn-warning rounded bg-gradient">EDIT</a></td>
+                                <td><a href="?delete=<?php echo $row['pId'] ?>" class="btn btn-danger rounded bg-gradient">DELETE</a></td>
                             </tr>
                         <?php
                         }

@@ -1,5 +1,5 @@
             <center>
-                <h4>RESIDENCE ALLOTMENT SYSTEM</h4>
+                <h4>RESIDENTIAL AUTOMATION SYSTEM</h4>
             </center>
             <center>
                 <h4>MANAGER PANNEL</h4>

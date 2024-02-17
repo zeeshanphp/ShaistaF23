@@ -6,11 +6,16 @@ if (isset($_POST['add_room'])) {
     $folder = $folder . basename($_FILES['rimage']['name']);
     move_uploaded_file($_FILES['rimage']['tmp_name'], $folder);
     $img = $_FILES['rimage']['name'];
-    $room = $_POST['rno'];
+    $rooms = $_POST['rno'];
     $rent = $_POST['rrent'];
     $type = $_POST['type'];
-    $query = "INSERT INTO  rooms(roomno,rent,type,image,status) VALUES('$room' , '$rent' , '$type' , '$img' , 'Available')";
+    $query = "INSERT INTO  rooms(rent,type,image,available_rooms,remaining_rooms) VALUES('$rent' , '$type' , '$img' , '$rooms', '$rooms')";
     if (mysqli_query($conn, $query)) {
+        $roomId = mysqli_insert_id($conn);
+        for ($i = 1; $i <= $rooms; $i++) {
+            $sql = "INSERT INTO room_details(room_no, room_type) VALUES('$i' , '$roomId')";
+            mysqli_query($conn, $sql);
+        }
         $message = "<b> Room/Flat Added Successfully &nbsp &nbsp <a href='view_rooms.php'> View Room Details </a></b>";
     }
 }
@@ -35,14 +40,6 @@ if (isset($_POST['add_room'])) {
                         <form method="POST" enctype="multipart/form-data">
                             <table class="table table-borderless mt-3">
                                 <tr>
-                                    <td><b>Room/Flat No:</b></td>
-                                    <td><input type="text" class="form-control" name="rno" placeholder="Enter Room No" required /></td>
-                                </tr>
-                                <tr>
-                                    <td><b>Rent</b></td>
-                                    <td><input type="text" class="form-control" name="rrent" placeholder="Enter Room Rent" required /></td>
-                                </tr>
-                                <tr>
                                     <td><b>Type</b></td>
                                     <td>
                                         <select name="type" id="" class="form-select">
@@ -57,6 +54,15 @@ if (isset($_POST['add_room'])) {
                                     <td><b>Picture</b></td>
                                     <td><input type="file" name="rimage" class="form-control"></td>
                                 </tr>
+                                <tr>
+                                    <td><b>No Of Rooms:</b></td>
+                                    <td><input type="number" class="form-control" name="rno" placeholder="Enter Room No" required /></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Rent</b></td>
+                                    <td><input type="text" class="form-control" name="rrent" placeholder="Enter Room Rent" required /></td>
+                                </tr>
+
                                 <tr>
                                     <td><button type="button" class="btn btn-danger bg-gradient rounded" data-bs-dismiss="modal">Close</button></td>
                                     <td><input type="submit" name="add_room" class="btn btn-success w-100 bg-gradient rounded" value="Add Room/Flat"></td>

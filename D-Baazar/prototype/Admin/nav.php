@@ -19,6 +19,16 @@
        ALL PRODUCTS
      </a>
    </li>
+   <li class="nav-item py-1">
+     <a href="view_users.php" class="nav-link" style="color: white;">
+       MANAGE REQUESTS
+     </a>
+   </li>
+   <li class="nav-item py-1">
+     <a href="orders.php" class="nav-link" style="color: white;">
+       VIEW ORDERS
+     </a>
+   </li>
 
    <li class="nav-item py-1">
      <a href="logout.php" class="nav-link" style="color: white;">
