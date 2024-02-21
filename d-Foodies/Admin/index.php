@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
     $rs = mysqli_query($conn, $query);
     if (mysqli_num_rows($rs) > 0) {
 
-        header('location:addowner.php');
+        header('location:dashboard.php');
     } else {
         echo "<script>alert('Invalid Username or Password')</script>";
     }

@@ -2,16 +2,13 @@
 include 'db.php';
 session_start();
 $restaurants = $_GET['id'];
-$result = mysqli_query($conn, "SELECT * FROM restaurants WHERE dId='$restaurants'");
+$result = mysqli_query($conn, "SELECT * FROM restaurants WHERE restaurantId='$restaurants'");
 $row = mysqli_fetch_array($result);
-$locations = "select * from  location";
-$loc_query = mysqli_query($conn, $locations);
 if (isset($_POST['update_restaurants'])) {
-
   $dname = $_POST['dname'];
   $dphone = $_POST['dphone'];
   $location = $_POST['location'];
-  $query = "UPDATE restaurants SET dname='$dname',dphone='$dphone', location='$location' WHERE dId='$restaurants'";
+  $query = "UPDATE restaurants SET dname='$dname',dphone='$dphone', location='$location' WHERE restaurantId='$restaurants'";
   mysqli_query($conn, $query);
   header('location:man_restaurant.php');
 }
@@ -62,7 +59,7 @@ if (isset($_POST['update_restaurants'])) {
               </td>
             </tr>
             <tr>
-              <td rowspan="5"><img src="images/<?php echo $row['photo']; ?>" /></td>
+              <td rowspan="5"><img src="images/<?php echo $row['photo']; ?>" height="200" width="200" /></td>
             </tr>
             <tr>
               <td style="text-align:right"><b>Restaurant Name</b></td>
@@ -75,12 +72,7 @@ if (isset($_POST['update_restaurants'])) {
 
             <tr>
               <td style="text-align:right"><b>Select Location</b></td>
-              <td><select name="location" class="form-control" required>
-                  <option value="<?php echo $row['location']; ?>"><?php echo $row['location']; ?></option>
-                  <?php while ($row = mysqli_fetch_array($loc_query)) { ?>
-                    <option value="<?php echo $row['loc'] ?>"><?php echo $row['loc'] ?></option>
-                  <?php  } ?>
-                </select>
+              <td><input type="text" class="form-control" name="location" value="<?php echo $row['location']; ?>" required>
               </td>
             </tr>
             <tr>

@@ -20,13 +20,13 @@
      </a>
    </li>
    <li class="nav-item py-1">
-     <a href="addcat.php" class="nav-link " style="color: white;">
-       ADD CATEGORY
+     <a href="offers.php" class="nav-link" style="color: white;">
+       ADD OFFER
      </a>
    </li>
    <li class="nav-item py-1">
-     <a href="mancat.php" class="nav-link " style="color: white;">
-       MANAGE CAETGORY
+     <a href="orders.php" class="nav-link" style="color: white;">
+       MANAGE ORDERS
      </a>
    </li>
    <li class="nav-item py-1">

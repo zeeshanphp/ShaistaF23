@@ -2,6 +2,8 @@
 include 'db.php';
 session_start();
 $query = "select * from food";
+// print_r($_SESSION['cart']);
+// die();
 $result = mysqli_query($conn, $query);
 
 
@@ -41,12 +43,17 @@ $result = mysqli_query($conn, $query);
 			</div>
 		</div>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
+			<div class="row py-2">
+				<div class="col-md-10">
 					<center class='text-success'>
 						<h2>ALL AVAILABLE MENUS</h2>
 					</center>
 				</div>
+				<div class="col-md-2 float-right">
+
+				</div>
+			</div>
+			<div class="row">
 				<?php while ($row = mysqli_fetch_array($result)) { ?>
 					<div class="col-md-3">
 						<table class="">
@@ -63,17 +70,23 @@ $result = mysqli_query($conn, $query);
 								<td><?php echo $row['pprice']; ?> </td>
 							</tr>
 							<tr>
-								<td><b>Food Category</b></td>
-								<td><?php echo $row['pcat']; ?> </td>
+								<td><b>Offer</b></td>
+								<td> <span class="badge badge-danger"><?php echo $row['discount']; ?>%</span> </td>
 							</tr>
-							
+
+							<tr>
+								<td colspan="2"><a href="add-to-cart.php?pId=<?php echo $row['pId'] ?>" class="btn btn-primary w-100 <?php if (empty($_SESSION['customerId'])) {
+																																			echo 'disabled';
+																																		} ?>">Add To Cart</a></td>
+							</tr>
 						</table>
 					</div>
 				<?php } ?>
 			</div>
-
-
 		</div>
+
+
+	</div>
 </body>
 
 </html>

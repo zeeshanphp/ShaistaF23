@@ -46,7 +46,6 @@ if (isset($_GET['id'])) {
               <th>Food Name</th>
               <th>Food Price</th>
               <th>Discount Price</th>
-              <th>Food Category</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -60,7 +59,6 @@ if (isset($_GET['id'])) {
                 <td><?php echo $row['pname']; ?></td>
                 <td><?php echo $row['pprice']; ?></td>
                 <td><?php echo $row['dprice']; ?></td>
-                <td><?php echo $row['pcat']; ?></td>
                 <td> <a href="edit_food.php?id=<?php echo $row['pId']; ?>" class="btn btn-block btn-warning">EDIT</a></td>
                 <td> <a href="?id=<?php echo $row['pId']; ?>" class="btn btn-block btn-danger">DELETE</a></td>
 

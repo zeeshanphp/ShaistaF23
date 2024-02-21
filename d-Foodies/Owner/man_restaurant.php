@@ -7,7 +7,7 @@ $result = mysqli_query($conn, $query);
 //script for delete inventory item 
 if (isset($_GET['delete'])) {
   $id = $_GET['delete'];
-  mysqli_query($conn, "delete from restaurants where dId='$id'");
+  mysqli_query($conn, "delete from restaurants where restaurantId='$id'");
   header('location:man_restaurant.php');
 }
 
@@ -61,8 +61,8 @@ if (isset($_GET['delete'])) {
                 <td><?php echo $row['dname']; ?></td>
                 <td><?php echo $row['dphone']; ?></td>
                 <td><?php echo $row['location']; ?></td>
-                <td> <a href="edit_restaurant.php?id=<?php echo $row['dId']; ?>" class="btn btn-block btn-warning">EDIT</a></td>
-                <td> <a href="?delete=<?php echo $row['dId']; ?>" class="btn btn-block btn-danger">DELETE</a></td>
+                <td> <a href="edit_restaurant.php?id=<?php echo $row['restaurantId']; ?>" class="btn btn-block btn-warning">EDIT</a></td>
+                <td> <a href="?delete=<?php echo $row['restaurantId']; ?>" class="btn btn-block btn-danger">DELETE</a></td>
 
               </tr>
             <?php

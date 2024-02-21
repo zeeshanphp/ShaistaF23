@@ -12,7 +12,7 @@ if (isset($_POST['login'])) {
     if (mysqli_num_rows($rs) > 0) {
         session_start();
         $row = mysqli_fetch_array($rs);
-        $_SESSION['custId'] = $row['userId'];
+        $_SESSION['customerId'] = $row['userId'];
         header('location:index.php');
     } else {
         echo "<script>alert('Invalid Username or Password')</script>";

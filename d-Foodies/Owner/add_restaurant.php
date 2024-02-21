@@ -2,8 +2,6 @@
 include 'db.php';
 session_start();
 $owner = $_SESSION['owner'];
-$locations = "select * from  location";
-$loc_query = mysqli_query($conn, $locations);
 if (isset($_POST['add_restaurants'])) {
 
   // echo  $_POST['pcompany'];  echo  $_POST['pcat']; die();
@@ -11,8 +9,8 @@ if (isset($_POST['add_restaurants'])) {
   $folder = $folder . basename($_FILES['dimage']['name']);
   move_uploaded_file($_FILES['dimage']['tmp_name'], $folder);
   $img = $_FILES['dimage']['name'];
-  //echo $img; die();
   $dname = $_POST['dname'];
+  $location = $_POST['location'];
   $dphone = $_POST['dphone'];
   $query = "insert into restaurants(dname,dphone,photo,location,owner) values('$dname' , '$dphone', '$img' , '$location' , '$owner')";
   mysqli_query($conn, $query);
@@ -67,6 +65,12 @@ if (isset($_POST['add_restaurants'])) {
             <tr>
               <td style="text-align:right"><b>Restaurant Name</b></td>
               <td><input type="text" class="form-control" name="dname" placeholder="Enter  Name Of Restaurant" required></td>
+            </tr>
+            <tr>
+              <td style="text-align:right"><b>Restaurant Location</b></td>
+              <td>
+                <input type="text" class="form-control" name="location" placeholder="Enter Location" required />
+              </td>
             </tr>
             <tr>
               <td style="text-align:right"><b>Restaurant Phone</b></td>

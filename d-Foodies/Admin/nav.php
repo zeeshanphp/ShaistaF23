@@ -21,6 +21,11 @@
      </a>
    </li>
    <li class="nav-item py-1">
+     <a href="orders.php" class="nav-link " style="color: white;">
+       VIEW ORDERS
+     </a>
+   </li>
+   <li class="nav-item py-1">
      <a href="logout.php" class="nav-link" style="color: white;">
        LOGOUT
      </a>
