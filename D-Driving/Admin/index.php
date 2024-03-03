@@ -9,7 +9,7 @@ if (isset($_POST['login_user'])) {
     $count = mysqli_num_rows($result);
     if ($count > 0) {
         $row = mysqli_fetch_array($result);
-        header('location: manage_students.php');
+        header('location: dashboard.php');
     } else {
         $message = "Login Failed Invalid Username Or Password";
     }

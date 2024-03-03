@@ -4,7 +4,6 @@
 <head>
 	<title>Driving School</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/styles.css">
 	<style>
 		body {
 			font-family: Calibri !important;

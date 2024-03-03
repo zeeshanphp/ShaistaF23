@@ -12,12 +12,18 @@ if (isset($_POST['ulogin'])) {
 	if (mysqli_num_rows($rs) > 0) {
 
 		$row = mysqli_fetch_array($rs);
-		if ($row['status'] == 'Pending') {
-			$message = "Your Registration Request is not approved by admin YET";
-		} else if ($row['status'] == 'Rejected') {
-			$message = "Your Registration Request is Rejected By Admin";
-		} else {
-			$message = "Your Request is approved";
+		switch ($row['status']) {
+			case 'Pending':
+				$message = "Your Registration Request is not approved by admin YET";
+				break;
+			case 'Rejected':
+				$message = "Your Registration Request is Rejected By Admin";
+				break;
+			default:
+				session_start();
+				$_SESSION['studentId'] = $row['studentId'];
+				header('location: schools.php');
+				break;
 		}
 	} else {
 		echo "<script>alert('Invalid Username or Password')</script>";
@@ -52,6 +58,11 @@ include 'header.php';
 					<tr>
 						<td colspan="2"><a href="register.php" class="btn btn-primary w-100">REGISTER AS NEW STUDENT</a></td>
 					</tr>
+					<tr>
+						<td><a href="Admin/" class="text-primary w-100"> <b> Admin Pannel </b></a></td>
+						<td><a href="Owner/" class="text-primary w-100"> <b> Owner Pannel </b></a></td>
+					</tr>
+
 				</table>
 			</form>
 		</div>

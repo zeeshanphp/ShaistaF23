@@ -1,5 +1,7 @@
 <?php
 include 'db.php';
+session_start();
+
 include 'header.php';
 ?>
 
@@ -10,6 +12,6 @@ include 'header.php';
 
 
 </div>
-</body>
-
-</html>
+<?php
+include 'footer.php'
+?>

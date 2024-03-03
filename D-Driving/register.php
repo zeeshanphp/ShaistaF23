@@ -30,8 +30,8 @@ include 'header.php';
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<?php if($message != ""){ ?>
-			<div class="alert alert-success"><?php echo $message ?></div>
+			<?php if ($message != "") { ?>
+				<div class="alert alert-success"><?php echo $message ?></div>
 			<?php } ?>
 			<center>
 				<h4>REGISTER AS NEW STUDENT</h4>
@@ -40,11 +40,11 @@ include 'header.php';
 				<table style="height:500px; width: 500px; margin: 0px auto;">
 					<tr>
 						<td>Enter First Name</td>
-						<td><input type="text" name="ufname" class="form-control" placeholder="Enter Fullname" /></td>
+						<td><input type="text" name="ufname" class="form-control" placeholder="Enter First Name" /></td>
 					</tr>
 					<tr>
 						<td>Enter Last Name</td>
-						<td><input type="text" name="ulfname" class="form-control" placeholder="Enter Fullname" /></td>
+						<td><input type="text" name="ulfname" class="form-control" placeholder="Enter Last Name" /></td>
 					</tr>
 					<tr>
 						<td>Enter Username</td>
@@ -56,7 +56,7 @@ include 'header.php';
 					</tr>
 					<tr>
 						<td>Enter Email</td>
-						<td><input type="email" name="uemail" class="form-control" placeholder="Enter Password" /></td>
+						<td><input type="email" name="uemail" class="form-control" placeholder="Enter Email" /></td>
 					</tr>
 					<tr>
 						<td>Enter Phone</td>
@@ -64,19 +64,20 @@ include 'header.php';
 					</tr>
 					<tr>
 						<td>Enter Adress</td>
-						<td><input type="text" name="ucity" class="form-control" placeholder="Enter Your City" /></td>
+						<td><input type="text" name="ucity" class="form-control" placeholder="Enter Your Adress" /></td>
 					</tr>
 					<tr>
-						<td style="text-align:right"><b>Upload Image</b></td>
-						<td><input type="file" name="pimage" class="form-control-file"></td>
+						<td>Upload Image:</td>
+						<td><input type="file" name="pimage" class="form-control"></td>
 					</tr>
 					<tr>
-						<td style="text-align:right"><b>Upload Fitness Certificate</b></td>
-						<td><input type="file" name="fcert" class="form-control-file"></td>
+						<td><b>Upload Fitness Certificate</b></td>
+						<td><input type="file" name="fcert" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>Vehicle:</td>
-						<td><select name="type" class="form-control">
+						<td><select name="type" class="form-select">
+								<option>Select Vehicle Type</option>
 								<option value="Car">Car</option>
 								<option value="Bike">Bike</option>
 								<option value="LTV">LTV</option>
@@ -84,10 +85,12 @@ include 'header.php';
 							</select></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" name="uregister" class="btn btn-warning w-100" value="REGISTER" /></td>
+						<td></td>
+						<td colspan=""><input type="submit" name="uregister" class="btn btn-warning w-100" value="REGISTER" /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><a href="loign.php" class="btn btn-primary w-100">LOGIN</a></td>
+						<td></td>
+						<td colspan=""><a href="loign.php" class="btn btn-primary w-100">LOGIN</a></td>
 					</tr>
 				</table>
 			</form>
